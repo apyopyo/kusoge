@@ -14,14 +14,12 @@ public class NotesScript : MonoBehaviour {
 	void Update () {
 		this.transform.position += Vector3.down * 10 * Time.deltaTime;
 		if (this.transform.position.y < -5.0f) {
-			Debug.Log("false");
 			Destroy (this.gameObject);
 		}
 	}
 
 
 	void OnTriggerStay2D(Collider2D other){
-        Debug.Log(lineNum);
         switch (lineNum) {
 		case 0:
 			CheckInput (KeyCode.D);

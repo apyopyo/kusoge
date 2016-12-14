@@ -24,8 +24,9 @@ public class GameManager : MonoBehaviour {
 
 	public Text scoreText;
 	private int _score = 0;
-
-	void Start(){
+    private float gap = 3.5f;
+    private int centerIcon = 2;
+    void Start(){
 		_audioSource = GameObject.Find ("GameMusic").GetComponent<AudioSource> ();
 		_timing = new float[1024];
 		_lineNum = new int[1024];
@@ -48,7 +49,12 @@ public class GameManager : MonoBehaviour {
         // 操作説明textを殺す
         GameObject obj = GameObject.Find("Text");
         obj.SetActive(false);
-
+        for (int i = 0; i < icons.Length; ++i)
+        {
+            Instantiate(icons[i],
+            new Vector3((gap * (i - centerIcon)), -3.0f, 0),
+            Quaternion.identity);
+        }
     }
 
 	void CheckNextNotes(){
@@ -60,7 +66,7 @@ public class GameManager : MonoBehaviour {
 
 	void SpawnNotes(int num){
 		Instantiate (notes[num], 
-			new Vector3 (-4.0f + (2.0f * num), 10.0f, 0),
+			new Vector3 ((gap * (num - centerIcon)), 10.0f, 0),
 			Quaternion.identity);
 	}
 

@@ -8,7 +8,7 @@ namespace UnityStandardAssets.Effects
     public class ExplosionPhysicsForce : MonoBehaviour
     {
         public float explosionForce = 4;
-
+        private int remain = 1;
 
         private IEnumerator Start()
         {
@@ -32,6 +32,9 @@ namespace UnityStandardAssets.Effects
             {
                 rb.AddExplosionForce(explosionForce*multiplier, transform.position, r, 1*multiplier, ForceMode.Impulse);
             }
+
+            // GOD CODE
+            Destroy(gameObject, remain);
         }
     }
 }
